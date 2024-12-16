@@ -1,0 +1,9 @@
+name: Deploy Application on Cloud Run
+on: [push]
+jobs:
+  Deploy-CloudRun:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - run: Echo ${{github.repository}}
