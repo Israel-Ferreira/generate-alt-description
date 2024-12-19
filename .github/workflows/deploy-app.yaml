@@ -32,10 +32,13 @@ jobs:
       - uses: 'google-github-actions/deploy-cloudrun@v2'
         with:
           region: ${{ env.REGION }}
+          env_vars: |-
+            FLASK_RUN_PORT=8000
+            
           image: us-east1-docker.pkg.dev/vertexai-practice-443200/docker-registry/generate-alt-description:latest
           service: generate-alt-description-svc
           flags: '--allow-unauthenticated "--max-instances=2"'
-          
+
           
           
           
