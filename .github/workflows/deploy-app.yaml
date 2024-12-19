@@ -6,4 +6,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - run: Echo ${{github.repository}}
+      - run: echo ${{github.repository}}
+
+      - name: Build Application Image
+        uses: Miragon/docker-cloud-build@v1.0.1
+        with:
+          gcp-project-id: ${{secrets.GCP_PROJECT_ID}}
+          gcp-service-account-key: ${{secrets.GCP_SA_KEY}}
+          gcp-gcr-region: us.gcr.io
+          image-name: generate-alt-description
+          image-sources: Dockerfile
+
+      
+
+          
+      
