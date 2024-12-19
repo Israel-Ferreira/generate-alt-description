@@ -33,7 +33,7 @@ jobs:
         with:
           region: ${{ env.REGION }}
           env_vars: |-
-            FLASK_RUN_PORT=8000
+            FLASK_RUN_PORT=8080
             
           image: us-east1-docker.pkg.dev/vertexai-practice-443200/docker-registry/generate-alt-description:latest
           service: generate-alt-description-svc
