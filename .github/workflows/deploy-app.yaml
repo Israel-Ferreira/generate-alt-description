@@ -16,6 +16,7 @@ jobs:
           gcp-gcr-region: us.gcr.io
           image-name: generate-alt-description
           image-sources: Dockerfile
+          github-disabled: true
 
       
 
