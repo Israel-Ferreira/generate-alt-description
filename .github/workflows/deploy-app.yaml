@@ -34,6 +34,7 @@ jobs:
           region: ${{ env.REGION }}
           image: us-east1-docker.pkg.dev/vertexai-practice-443200/docker-registry/generate-alt-description:latest
           service: generate-alt-description-svc
+          flags: '--allow-unauthenticated "--max-instances=2"'
           
           
           
