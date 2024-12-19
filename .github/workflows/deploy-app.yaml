@@ -2,21 +2,37 @@ name: Deploy Application on Cloud Run
 on: [push]
 jobs:
   Deploy-CloudRun:
+    env:
+      REGION: us-east1
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       
       - run: echo ${{github.repository}}
 
-      - name: Build Application Image
-        uses: Miragon/docker-cloud-build@v1.0.1
+      - name: "Google Cloud Authentication"
+        uses: 'google-github-actions/auth@v2'
         with:
-          gcp-project-id: ${{secrets.GCP_PROJECT_ID}}
-          gcp-service-account-key: ${{secrets.GCP_SA_KEY}}
-          gcp-gcr-region: us.gcr.io
-          image-name: generate-alt-description
-          image-sources: Dockerfile
-          github-disabled: true
+          credentials_json: '${{secrets.GCP_SA_KEY}}'
+
+
+      - run: gcloud info
+      
+      - name: Docker Auth
+        run: |-
+          gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
+
+      
+      - name: Build e Push
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          tags: us-east1-docker.pkg.dev/vertexai-practice-443200/docker-registry/generate-alt-description:latest
+          
+          
+          
+        
+
 
       
 
